@@ -16,12 +16,8 @@ Descarga `Analizador_COMTRADE_R2_Windows.zip`, descomprímelo y ejecuta `Analiza
 
 ## Código fuente y compilación
 
-El código C++20 está en `native/`. Para reconstruir en Windows se requiere Visual Studio 2022 Build Tools con MSVC, Windows SDK y CMake 3.21 o superior. Ejecuta `native\build.bat` desde el directorio del repositorio; el script configura x64, compila Release, corre las pruebas nativas y muestra la ubicación del ejecutable.
-
-## Alcance de la protección
-
-La guarda comprueba si Windows informa que hay un depurador conectado y, en ese caso, muestra un aviso y cierra la aplicación. No impide el desensamblado estático, el parcheo ni la elusión de la comprobación.
+El código C++20 está en `native/`. Para reconstruir en Windows se requiere Visual Studio 2022 Build Tools con MSVC, Windows SDK y CMake 3.21 o superior. Ejecuta `native\\build.bat` desde el directorio del repositorio; el script configura x64, compila Release, corre las pruebas nativas y muestra la ubicación del ejecutable.
 
 ## Licencia
 
-El proyecto se identifica como freeware 0.1, pero este repositorio no incluye una licencia de código fuente. La visibilidad pública permite consultar y descargar los archivos, pero no concede por sí sola permiso para reutilizar, modificar o redistribuir el código. Contacta al autor para conocer los términos.
+El programa se ofrece gratuitamente como freeware 0.1. El repositorio aún no incluye una licencia de código fuente; su publicación permite consultar y descargar los archivos, pero no concede por sí sola permisos para modificar o redistribuir el código.
