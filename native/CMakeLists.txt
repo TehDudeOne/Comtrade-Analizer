@@ -52,7 +52,6 @@ add_executable(AnalizadorComtrade WIN32
     src/version.rc
     src/ui.cpp
     src/report.cpp
-    src/runtime_guard.cpp
 )
 
 target_include_directories(AnalizadorComtrade PRIVATE
@@ -181,15 +180,9 @@ if(ANALIZADOR_BUILD_TESTS)
             WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}")
     endif()
 
-    add_executable(analizador_test_runtime_guard tests/test_runtime_guard.cpp src/runtime_guard.cpp)
-    target_include_directories(analizador_test_runtime_guard PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
-    target_compile_definitions(analizador_test_runtime_guard PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX _WIN32_WINNT=0x0A00 ANALIZADOR_RUNTIME_GUARD_TESTING)
-    target_link_libraries(analizador_test_runtime_guard PRIVATE user32)
-    add_test(NAME analizador.runtime_guard COMMAND analizador_test_runtime_guard)
-
     if(MSVC)
         foreach(target analizador_test_comtrade analizador_test_analysis
-                       analizador_test_report analizador_test_breaker analizador_test_runtime_guard)
+                       analizador_test_report analizador_test_breaker)
             if(TARGET ${target})
                 target_compile_options(${target} PRIVATE
                     /W4
@@ -203,7 +196,7 @@ if(ANALIZADOR_BUILD_TESTS)
         endforeach()
     elseif(MINGW)
         foreach(target analizador_test_comtrade analizador_test_analysis
-                       analizador_test_report analizador_test_breaker analizador_test_runtime_guard)
+                       analizador_test_report analizador_test_breaker)
             if(TARGET ${target})
                 target_compile_options(${target} PRIVATE
                     -Wall

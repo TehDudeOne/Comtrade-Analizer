@@ -20,7 +20,7 @@ BEGIN
             VALUE "InternalName", "AnalizadorComtrade\0"
             VALUE "OriginalFilename", "AnalizadorComtrade.exe\0"
             VALUE "ProductName", "Analizador COMTRADE\0"
-            VALUE "ProductVersion", "0.1 freeware - revision 2\0"
+            VALUE "ProductVersion", "0.1 freeware - revisión 2\0"
             VALUE "Comments", "Desarrollado por Ricardo Porras G.\0"
         END
     END

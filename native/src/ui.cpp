@@ -5,7 +5,6 @@
                                                    
 
 #include "analizador/ui.hpp"
-#include "analizador/runtime_guard.hpp"
 
 #include "analizador/analysis.hpp"
 #include "analizador/comtrade.hpp"
@@ -2959,16 +2958,7 @@ public:
     }
 
     int run() {
-        if (analizador::runtime_guard::debuggerAttached()) {
-            closeForDebugger();
-        } else if (::SetTimer(hwnd_, analizador::runtime_guard::kDebuggerCheckTimerId,
-                              analizador::runtime_guard::kDebuggerCheckIntervalMs,
-                              nullptr) == 0) {
-            runtime_exit_code_ = 1;
-            ::MessageBoxW(hwnd_, L"No se pudo iniciar el control de protección. La aplicación se cerrará.",
-                          L"Analizador COMTRADE", MB_OK | MB_ICONERROR);
-            ::PostMessageW(hwnd_, WM_CLOSE, 0, 0);
-        } else if (!initial_path_.empty()) {
+        if (!initial_path_.empty()) {
             openPaths({std::filesystem::path(initial_path_)});
         }
         MSG message{};
@@ -2981,16 +2971,6 @@ public:
     }
 
 private:
-    bool runtime_guard_closing_ = false;
-    int runtime_exit_code_ = 0;
-    void closeForDebugger() {
-        if (runtime_guard_closing_) return;
-        runtime_guard_closing_ = true;
-        runtime_exit_code_ = ERROR_ACCESS_DENIED;
-        ::KillTimer(hwnd_, analizador::runtime_guard::kDebuggerCheckTimerId);
-        analizador::runtime_guard::showDebuggerWarning(hwnd_);
-        ::PostMessageW(hwnd_, WM_CLOSE, 0, 0);
-    }
     static LRESULT CALLBACK windowProc(HWND window, UINT message, WPARAM wparam,
                                        LPARAM lparam) {
         MainWindow* self = reinterpret_cast<MainWindow*>(
@@ -3089,12 +3069,6 @@ private:
             case kMessageLoadDone:
                 onLoadDone();
                 return 0;
-            case WM_TIMER:
-                if (wparam == analizador::runtime_guard::kDebuggerCheckTimerId) {
-                    if (!runtime_guard_closing_ && analizador::runtime_guard::debuggerAttached()) closeForDebugger();
-                    return 0;
-                }
-                break;
             case WM_CLOSE:
                 closing_.store(true);
                 if (worker_.joinable()) {
@@ -3108,9 +3082,8 @@ private:
                     worker_.join();
                 }
                 ::KillTimer(hwnd_, 1);
-                ::KillTimer(hwnd_, analizador::runtime_guard::kDebuggerCheckTimerId);
                 releaseFonts();
-                ::PostQuitMessage(runtime_exit_code_);
+                ::PostQuitMessage(0);
                 return 0;
             case WM_NCDESTROY: {
                 HWND window = hwnd_;
