@@ -25,4 +25,3 @@ La guarda comprueba si Windows informa que hay un depurador conectado y, en ese 
 ## Licencia
 
 El proyecto se identifica como freeware 0.1, pero este repositorio no incluye una licencia de código fuente. La visibilidad pública permite consultar y descargar los archivos, pero no concede por sí sola permiso para reutilizar, modificar o redistribuir el código. Contacta al autor para conocer los términos.
-

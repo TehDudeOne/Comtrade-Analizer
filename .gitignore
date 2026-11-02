@@ -1,0 +1,12 @@
+native/build/
+native/build-*/
+native/CMakeFiles/
+native/CMakeCache.txt
+native/*.sln
+native/*.vcxproj*
+native/.vs/
+*.obj
+*.pdb
+*.ilk
+*.tlog/
+*.recipe
