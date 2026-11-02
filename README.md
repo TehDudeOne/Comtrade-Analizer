@@ -20,6 +20,6 @@ El código C++20 está en `native/`. Para reconstruir en Windows se requiere Vis
 
 ## Licencia
 
-El código fuente y el ejecutable se distribuyen bajo la licencia PolyForm Noncommercial 1.0.0, incluida en `LICENSE`. Permite el uso, la modificación y la distribución para los propósitos no comerciales definidos allí, con excepciones expresas para determinadas instituciones. Revisa el texto completo.
+El código fuente y el ejecutable se distribuyen bajo la licencia PolyForm Noncommercial 1.0.0, incluida en `LICENSE`. Permite el uso, la modificación y la distribución para los propósitos no comerciales definidos allí, con excepciones expresas para determinadas instituciones. Revisa el texto completo. Como limita el uso comercial, no es una licencia Open Source.
 
 El ejecutable oficial se ofrece gratuitamente. Esta licencia no concede permiso general para el uso comercial; para otros usos comerciales, solicita autorización independiente al titular.
